@@ -23,7 +23,8 @@ class TaggableResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('tag_id')->relationship('tags', 'name')->required(),
+                Forms\Components\Select::make('card_id')->relationship('cards', 'name')->required(),
             ]);
     }
 
@@ -31,7 +32,12 @@ class TaggableResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('tag_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('card_id')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //

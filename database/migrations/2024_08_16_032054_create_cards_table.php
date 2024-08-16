@@ -17,6 +17,12 @@ return new class extends Migration
             $table->text('description');
             $table->longText('url');
             $table->timestamps();
+
+            $table->unsignedBiginteger('tag_id');
+
+
+            $table->foreign('tag_id')->references('id')
+                ->on('tags')->onDelete('cascade');
         });
     }
 

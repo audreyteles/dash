@@ -26,12 +26,18 @@ class CardResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('url')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('tag_id')
+                    ->required()
+                    ->numeric(),
+//                Forms\Components\Select::make('tag_id')->relationship('tags')->required(),
+
             ]);
     }
 
@@ -49,6 +55,9 @@ class CardResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('tag_id')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //

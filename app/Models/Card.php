@@ -16,6 +16,7 @@ class Card extends Model
         'name',
         'description',
         'url',
+        'tag_id',
         'user_id',
     ];
 
@@ -25,9 +26,9 @@ class Card extends Model
         return $this->BelongsTo(User::class);
     }
     // In the Post.php model:
-    public function tags(): belongsToMany
+    public function tag(): HasMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->hasMany(Tag::class);
     }
 
 }

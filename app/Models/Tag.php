@@ -15,8 +15,8 @@ class Tag extends Model
     ];
 
     // In the Tag.php model:
-    public function cards(): belongsToMany
+    public function card(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Card::class);
+        return $this->hasMany(Card::class);
     }
 }
