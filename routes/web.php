@@ -4,8 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $cards = \App\Models\Card::all();
+    return view('welcome')->with('cards', $cards);
+})->name('dash');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
