@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Card extends Model
 {
@@ -26,9 +27,9 @@ class Card extends Model
         return $this->BelongsTo(User::class);
     }
     // In the Post.php model:
-    public function tag(): HasMany
+    public function tag(): BelongsTo
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
 
 }

@@ -1,3 +1,3 @@
 <h1 {{ $attributes }}>
-DSI
+DASH
 </h1>

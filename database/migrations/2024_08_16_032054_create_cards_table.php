@@ -19,8 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBiginteger('tag_id');
-
-
+            
             $table->foreign('tag_id')->references('id')
                 ->on('tags')->onDelete('cascade');
         });

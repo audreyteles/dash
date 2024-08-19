@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CardResource\Pages;
 use App\Filament\Resources\CardResource\RelationManagers;
 use App\Models\Card;
+use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,18 +27,16 @@ class CardResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('url')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('tag_id')
-                    ->required()
-                    ->numeric(),
-//                Forms\Components\Select::make('tag_id')->relationship('tags')->required(),
-
+                Forms\Components\Select::make('tag_id')
+                    ->label('Tag')
+                    ->options(Tag::all()->pluck('name', 'id'))
+                    ->required(),
             ]);
     }
 
@@ -46,7 +45,7 @@ class CardResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()->description(fn(Card $record): string => $record->description)->width('10px'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -56,9 +55,11 @@ class CardResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('tag_id')
-                    ->numeric()
-                    ->sortable(),
-            ])
+                    ->label('Tag')
+                    ->formatStateUsing(fn($state) => Tag::find($state)->name) // Obtém o nome da tag pelo ID
+                    ->searchable()
+                    ->sortable()->badge(),
+                Tables\Columns\TextColumn::make('url')->label("URL")])
             ->filters([
                 //
             ])
