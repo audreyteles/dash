@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Models\Card;
 use App\Models\Tag;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Cards extends Component
 {
+    use withPagination;
 
     public $search = '';
     public int $tag = 0;

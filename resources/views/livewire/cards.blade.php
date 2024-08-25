@@ -1,8 +1,8 @@
 <div class="grid  grid-cols-1 auto-rows-min">
-    <header class="h-[25vh] flex justify-center items-center justify-self-center self-start">
+    <header class="h-[20vh] flex justify-center items-center justify-self-center self-start">
         <div class="flex flex-col items-center sm:flex-row">
             <nav
-                class="w-[40vw] sm:w-[40vw] md:w-[35vw] lg:w-[25vw] grid grid-cols-1 justify-center items-center h-full">
+                class="w-[90vw] sm:w-[40vw] md:w-[35vw] lg:w-[25vw] grid grid-cols-1 justify-center items-center h-full">
 
                 <input type="text" wire:model.live="search" placeholder="Informe a sua busca..."
                        class="p-4 w-full text-lg align-middle text-center text-gray-900 rounded-full border-0 shadow-xl focus:ring-0">
@@ -15,8 +15,8 @@
 
             </nav>
             <select id="tag" name="tag" wire:model.change="tag"
-                    class="mx-2 p-4 my-2 sm:my-0 w-full sm:w-56  text-lg align-middle text-center text-gray-600 rounded-full border-0 shadow-xl focus:ring-0 ">
-                <option value="0">Categoria</option>
+                    class="mx-2 py-4 my-2 sm:my-0 w-[90vw] sm:w-[20vw] text-lg align-middle text-center text-gray-600 rounded-full border-0 shadow-xl focus:ring-0 ">
+                <option value="0">Todos</option>
                 @foreach($tags as $tag)
                     <option value="{{$tag->id}}" class="text-gray-600">{{$tag->name}}</option>
                 @endforeach
@@ -25,32 +25,40 @@
 
     </header>
     <main
-        class="flex flex-col justify-center items-center w-full pb-36 sm:pb-0 h-fit min-h-[50vh]"
+        class="flex justify-center items-center w-full pb-36 sm:pb-0 h-fit min-h-[50vh] flex-col sm:flex-row"
         id="main">
         <div
-            class="grid w-[80vw] gap-6 sm:gap-2 lg:gap-6 sm:grid-cols-4 lg:grid-cols-4">
+            class="grid w-[80vw] gap-6 sm:gap-2 lg:gap-6 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4">
             @forelse($cards as $card)
-                <a href="{{$card->url}}" target=”_blank”>
-                    <div class="justify-self-center sm:p-2 bg-cover h-40 w-full p-6 rounded-2xl cursor-pointer  transition-all ease-in-out scale-100 duration-300 shadow-sm ring-
-        ring-gray-400 hover:shadow-lg hover:scale-[105%] active:scale-95 flex-col flex items-center justify-center bg-gray-100"
-                    >
-                        <h1 class="text-gray-900 font-extrabold text-xl"> {{$card->name}} </h1>
-                        <p class="font-light text-base text-center text-gray-600 hidden md:flex lg:flex">{{$card->description}}</p>
-
-                        <div class="rounded-full w-fit h-fit text-amber-500 border-2 px-2 border-amber-500 justify-center flex text-[0.7rem]">
-                            {{$card->tag->name}}
+                <a href="{{$card->url}}" target=”_blank">
+                    <div class="group justify-self-center justify-center sm:p-2 h-28 sm:h-44 w-full p-6
+                        rounded-2xl cursor-pointer transition-all ease-in-out scale-100 duration-300 shadow-sm ring-
+        ring-gray-400 hover:shadow-lg hover:scale-[105%] active:scale-95 grid grid-cols-1 items-center bg-gray-100">
+                        <div
+                            class="h-[2rem] justify-center text-center flex transition-all duration-500 group-hover:opacity-0">
+                            <h1 class="text-gray-900 font-extrabold text-xl group-hover:hidden">{{$card->name}}</h1>
+                        </div>
+                        <div
+                            class="text-center h-10 group-hover:w-[80%] hidden group-hover:flex sm:flex justify-center justify-self-center text-content group-hover:h-full group-hover:items-center group-hover:absolute">
+                            <p class="font-light text-sm text-gray-600 md:flex lg:flex line-clamp-2">{{$card->description}}</p>
+                        </div>
+                        <div
+                            class="w-full justify-center text-justify flex transition-all duration-500 group-hover:opacity-0">
+                            <p class="w-fit h-fit text-amber-500 border-2 px-2 border-amber-500 justify-center flex text-[0.7rem] rounded-full bg-white group-hover:hidden">
+                                {{$card->tag->name}}
+                            </p>
                         </div>
                     </div>
                 </a>
+
             @empty
                 <div
                     class="sm:p-2 bg-cover h-40 w-full p-6 rounded-2xl shadow-sm flex-col flex items-center justify-center text-gray-50 col-span-4">
                     <p class="font-normal text-xl text-center flex">Nenhum sistema encontrado!</p>
                 </div>
             @endforelse
-
         </div>
-        <div class="text-gray-50 w-full justify-center">
+        <div class="text-gray-50 w-0 sm:w-16 justify-center sm:rotate-90">
             {{ $cards->links() }}
         </div>
     </main>

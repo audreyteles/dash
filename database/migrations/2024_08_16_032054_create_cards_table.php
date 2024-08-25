@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->longText('url');
+            $table->string('description', 100);
+            $table->string('url');
             $table->timestamps();
 
             $table->unsignedBiginteger('tag_id');
-            
+
             $table->foreign('tag_id')->references('id')
                 ->on('tags')->onDelete('cascade');
         });

@@ -29,9 +29,11 @@ class CardResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->required()
+                    ->maxLength(100)
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('url')
+                Forms\Components\TextInput::make('url')
                     ->required()
+                    ->maxLength(255)
                     ->columnSpanFull(),
                 Forms\Components\Select::make('tag_id')
                     ->label('Tag')

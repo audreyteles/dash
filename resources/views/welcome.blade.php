@@ -16,8 +16,9 @@
 
     @livewireStyles
 </head>
-<body class="font-sans w-screen h-fit sm:h-screen items-center justify-center scroll-smooth bg-cover" style="background-image: url({{asset('dark.png')}})">
+<body class="font-sans w-screen min-h-screen sm:h-screen items-center justify-center scroll-smooth bg-cover" style="background-image: url({{asset('dark.png')}})">
     <livewire:cards/>
+
 </body>
 
 </html>
