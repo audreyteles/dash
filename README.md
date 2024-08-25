@@ -1,6 +1,15 @@
 # Dash
 
-This is an application dashboard for your web applications.
+This is an application dashboard for your web applications. 
+
+---
+![image](https://github.com/user-attachments/assets/c4fd9adf-7ee9-4983-a73d-0b212f4077d9)
+Note: Home page with added apps (in Brazilian Portuguese, for now)
+
+
+---
+![image](https://github.com/user-attachments/assets/01b292ea-d8bf-4f6c-a9db-e0d01fdb4b47)
+Note: Home page without apps
 
 ---
 
