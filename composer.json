@@ -6,6 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-ldap": "*",
+        "directorytree/ldaprecord": "^3.7",
+        "directorytree/ldaprecord-laravel": "^3.3",
         "filament/filament": "^3.2",
         "laravel/breeze": "^2.1",
         "laravel/framework": "^11.9",
