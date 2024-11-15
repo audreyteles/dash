@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -40,6 +42,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'ldap' => [ // ldap guard
+            'driver' => 'session',
+            'provider' => 'ldap',
+        ],
     ],
 
     /*
@@ -64,11 +70,20 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'ldap' => [ // ldap provider
+            'driver' => 'ldap', // related with config/ldap.php file
+            'model' => LdapRecord\Models\OpenLDAP\User::class,
+            'rules' => [],
+            'database' => [
+                'model' => env('AUTH_MODEL', User::class),
+                'sync_passwords' => env('AUTH_SYNC_PASSWORD', false),
+                'sync_attributes' => [
+                    "name" => "cn",
+                    "username" => "uid",
+                    "email" => "mail",
+                ]
+            ]
+        ],
     ],
 
     /*

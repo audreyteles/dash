@@ -1,16 +1,15 @@
 <?php
 
-use App\Http\Controllers\CardController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Card;
 use Illuminate\Support\Facades\Route;
+use App\Models\Card;
 
 Route::get('/', function () {
     $cards = Card::all();
     return view('welcome')->with('cards', $cards);
 })->name('dash');
 
-Route::get('/create', function (){
+Route::get('/create', function () {
     return redirect('/profile/cards');
 })->name('create');
 
@@ -25,4 +24,4 @@ Route::middleware('auth')->group(function () {
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
