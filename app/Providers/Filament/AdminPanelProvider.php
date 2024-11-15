@@ -26,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->navigationItems([
                 NavigationItem::make('Dashboard')
-                    ->url($_ENV['APP_URL'], shouldOpenInNewTab: false)
+                    ->url($_ENV['APP_URL'])
                     ->icon('heroicon-o-home')
             ])
             ->default()

@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+use LdapRecord\Laravel\Auth\HasLdapUser;
+use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LDAPAuthenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, AuthenticatesWithLdap, HasLdapUser;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
 
@@ -45,7 +49,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    // Indica que um usuário pode ter vários cards
+    // A user can has many cards
     public function post(): HasMany
     {
         return $this->hasMany(Card::class);
